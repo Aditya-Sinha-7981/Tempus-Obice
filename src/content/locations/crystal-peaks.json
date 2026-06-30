@@ -2,7 +2,7 @@
 	"id": "crystal-peaks",
 	"name": "The Crystal Peaks",
 	"description": "A towering mountain range where ancient crystals hum with forgotten magic, illuminating the caverns beneath.",
-	"coordinates": [400, 300],
+	"coordinates": [1655, 2062],
 	"markerIcon": "crystal",
 	"storyIds": ["crystal-peaks-origin"]
 }

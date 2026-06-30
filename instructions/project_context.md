@@ -564,11 +564,14 @@ Existing functionality remains working.
 - [x] React App Shell
 - [x] Placeholder WorldMap
 - [x] Placeholder Sidebar
+- [x] Leaflet Map
+- [x] World Map Asset Integration
+- [x] Developer Coordinate Tool
+- [x] Dynamic Marker System
+- [x] Sidebar Integration
 
 ## Upcoming
 
-- [ ] Leaflet Map
-- [ ] Sidebar (functional)
 - [ ] Story Pages
 - [ ] Polish
 

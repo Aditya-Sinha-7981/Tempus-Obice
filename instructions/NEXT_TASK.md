@@ -1,190 +1,211 @@
 # Current Task
 
-## Phase 4 - Leaflet Foundation
+# Phase 5 - Dynamic Location Marker System
 
-### Goal
+## Goal
 
-Replace the placeholder map with a fully functional Leaflet implementation using an image overlay.
+Render every location from the Astro Content Collection as an interactive marker on the Leaflet map.
 
-The map should support navigation (zooming and panning) but should not yet render interactive markers.
+This is the first feature that connects the project's data layer with the interactive map.
 
-This phase establishes the permanent map engine that future phases will build upon.
+Markers should be completely data-driven.
+
+Adding a new JSON file should automatically create a new marker.
+
+No application code should need modification.
 
 ---
 
 # Requirements
 
-## Leaflet Integration
+## Dynamic Marker Rendering
 
-Implement Leaflet directly.
+Load every location from the Astro Content Collection.
 
-Do NOT use react-leaflet.
+Render one marker for every location.
 
-Use the official Leaflet API.
+Marker positions must use:
 
-Leaflet should be initialized inside React.
+Location.coordinates
 
-The map instance must only be created once.
+No hardcoded coordinates.
 
-Destroy the map instance correctly when the component unmounts.
-
----
-
-## CRS
-
-Configure Leaflet to use:
-
-CRS.Simple
-
-This project uses image coordinates.
-
-It is NOT a geographic map.
-
-Do not use latitude/longitude.
-
-Do not use OpenStreetMap.
-
-Do not use Mapbox.
+No manually added markers.
 
 ---
 
-## Image Overlay
+## Marker Icons
 
-Display a large fantasy map image.
+Support marker icons.
 
-The image should come from the project's assets.
+Each location already contains:
 
-Requirements:
+markerIcon
 
-- preserve aspect ratio
-- responsive
-- fills available map space
-- image overlay only
+Create a reusable icon management system.
 
-The image dimensions should be configurable instead of hardcoded throughout the codebase.
+If a requested icon does not exist:
 
----
+Use a default marker.
 
-## Navigation
+Do not duplicate icon creation logic.
 
-Support:
-
-Mouse wheel zoom
-
-Trackpad zoom
-
-Drag to pan
-
-Double click zoom
-
-Touch gestures
-
-The map should feel smooth.
+The system should easily support future icons.
 
 ---
 
-## Zoom Limits
+## Marker Interaction
 
-Provide sensible defaults.
+Clicking a marker should:
 
-Prevent zooming infinitely far in or out.
+- Update selectedLocation.
+- Notify App.jsx.
+- Update the Sidebar.
 
-The entire map should be viewable.
+Do not navigate.
 
----
+Do not reload the page.
 
-## Resize Handling
-
-The map must correctly resize when:
-
-- browser size changes
-- sidebar width changes in future phases
-
-Do not allow rendering glitches.
+Do not open Leaflet popups.
 
 ---
 
-## Styling
+## Selected Marker
 
-Replace the placeholder styles.
+Support two visual states.
 
-The map should fill its container.
+Default
 
-Leaflet controls should match the dark fantasy theme where reasonably possible using CSS.
+Selected
 
----
+The selected marker should remain highlighted until another marker is selected.
 
-## Architecture
-
-Create reusable helper functions if needed.
-
-Avoid mixing Leaflet initialization logic with future marker logic.
-
-The map engine should be easy to extend.
+Selecting a new marker should automatically deselect the previous one.
 
 ---
 
-# Constraints
+## Auto Camera Focus
+
+When a marker is selected:
+
+Smoothly animate the map to center that location.
+
+Use Leaflet's animation APIs.
+
+Avoid abrupt jumps.
+
+Do not over-zoom.
+
+Keep the current zoom level whenever reasonable.
+
+---
+
+## Marker Layer
+
+Markers should exist inside their own Leaflet layer.
+
+Future features should be able to add:
+
+- filters
+- clustering
+- animations
+- highlighting
+
+without changing map initialization.
+
+---
+
+## Sidebar Integration
+
+Use the existing sidebar.
+
+Display:
+
+- Location name
+- Description
+- Story count
+
+The sidebar should update immediately after marker selection.
+
+No loading state is required.
+
+---
+
+## Developer Mode Compatibility
+
+Developer Tools must continue working.
+
+Coordinate mode should not interfere with marker interaction.
+
+The temporary developer marker should continue functioning.
+
+---
+
+## Constraints
 
 Do NOT implement:
 
-Markers
+Story navigation
 
-Sidebar integration
-
-Story links
-
-FlyTo
-
-Popup windows
+Story cards
 
 Search
 
-Animations
+Filtering
 
-Location selection
+Marker clustering
 
-Anything related to application state
+Hover animations
 
-This phase is only about building the map engine.
+Custom context menus
+
+Editing markers
+
+Backend functionality
 
 ---
 
 # Acceptance Criteria
 
-✓ npm run dev
+✓ npm run dev succeeds
 
-✓ npm run build
+✓ npm run build succeeds
 
-✓ World image displays
+✓ Every JSON location creates one marker
 
-✓ Mouse wheel zoom works
+✓ Marker positions are correct
 
-✓ Drag works
+✓ Clicking a marker updates the sidebar
 
-✓ Double-click zoom works
+✓ Selected marker is visually distinct
 
-✓ Touch gestures work
+✓ Camera smoothly centers selected marker
 
-✓ Window resizing works
+✓ Developer Mode still works
+
+✓ No duplicate markers
 
 ✓ No console errors
 
 ✓ No memory leaks
 
-✓ Leaflet instance destroyed correctly
-
 ---
 
 # Deliverables
 
-Expected modifications include:
+Expected modified files include:
 
 components/Map/WorldMap.jsx
 
+components/Map/MapMarker.jsx
+
+components/App.jsx
+
+components/Sidebar/Sidebar.jsx
+
 styles/map.css
 
-Any helper modules required for Leaflet initialization
+Utility modules for marker/icon management if appropriate.
 
 ---
 
@@ -192,14 +213,18 @@ Any helper modules required for Leaflet initialization
 
 When finished:
 
-1. Explain every file modified.
+1. Explain every modified file.
 
-2. Explain how CRS.Simple works in this project.
+2. Explain how markers are generated.
 
-3. Explain how image coordinates relate to future marker placement.
+3. Explain how React communicates with Leaflet.
 
-4. Verify all acceptance criteria.
+4. Explain how the marker layer is organized.
 
-5. Update AI_CONTEXT.md.
+5. Verify every acceptance criterion.
 
-6. Replace NEXT_TASK.md after successful completion only.
+6. Update PROJECT_STATE.md.
+
+7. Update project_context.md.
+
+8. Replace NEXT_TASK.md only after successful completion.

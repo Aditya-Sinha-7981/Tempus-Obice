@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2000" height="1500" viewBox="0 0 2000 1500">
+  <defs>
+    <pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse">
+      <path d="M 50 0 L 0 0 0 50" fill="none" stroke="#2a2a35" stroke-width="1"/>
+    </pattern>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a25"/>
+      <stop offset="100%" style="stop-color:#0d0f12"/>
+    </linearGradient>
+  </defs>
+  <rect width="2000" height="1500" fill="url(#bg)"/>
+  <rect width="2000" height="1500" fill="url(#grid)"/>
+  <circle cx="400" cy="300" r="60" fill="#2d4a3e" stroke="#c9a84c" stroke-width="2" opacity="0.7"/>
+  <text x="400" y="305" text-anchor="middle" fill="#c9a84c" font-size="16" font-family="serif">Crystal Peaks</text>
+  <path d="M 100 800 Q 400 600 700 750 T 1300 700 T 1900 850" fill="none" stroke="#3a5a6e" stroke-width="8" opacity="0.6"/>
+  <path d="M 100 900 Q 500 750 900 850 T 1500 800 T 1950 950" fill="none" stroke="#4a3a5e" stroke-width="6" opacity="0.5"/>
+  <ellipse cx="1400" cy="400" rx="150" ry="100" fill="#3e3a2a" stroke="#c9a84c" stroke-width="2" opacity="0.6"/>
+  <text x="1400" y="405" text-anchor="middle" fill="#c9a84c" font-size="16" font-family="serif">Ancient Forest</text>
+  <rect x="800" y="1000" width="300" height="200" rx="20" fill="#2a3a4a" stroke="#6a8a9a" stroke-width="3" opacity="0.7"/>
+  <text x="950" y="1110" text-anchor="middle" fill="#6a8a9a" font-size="16" font-family="serif">Port of Waves</text>
+  <path d="M 1600 200 L 1700 150 L 1800 200 L 1700 250 Z" fill="#5a4a3a" stroke="#c9a84c" stroke-width="2"/>
+  <text x="1700" y="280" text-anchor="middle" fill="#c9a84c" font-size="14" font-family="serif">Mountains</text>
+  <text x="1000" y="750" text-anchor="middle" fill="#5a5a6a" font-size="48" font-family="serif" opacity="0.3">TEMPUS OBICE</text>
+  <circle cx="600" cy="1200" r="80" fill="#4a2a2a" stroke="#9a6a5a" stroke-width="2" opacity="0.6"/>
+  <text x="600" y="1205" text-anchor="middle" fill="#9a6a5a" font-size="16" font-family="serif">Volcano</text>
+</svg>
