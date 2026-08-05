@@ -1,0 +1,44 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { deconstructions } from '../data/pdfs';
+import '../styles/archive.css';
+
+const pageUrl = Astro.url.pathname;
+---
+
+<BaseLayout
+	title="Game Deconstruction"
+	description="Game analysis and deconstruction documents"
+>
+	<div class="archive-page">
+		<div class="archive-header">
+			<a href="/" class="back-link">← Home</a>
+			<h1 class="archive-title">Game Deconstruction</h1>
+			<p class="archive-description">Deep dives into game design, mechanics, and systems.</p>
+		</div>
+
+		<div class="archive-list">
+			{deconstructions.length === 0 ? (
+				<div class="archive-empty">
+					<p>No deconstructions uploaded yet.</p>
+					<p>
+						Add PDFs to <code>/public/pdfs/deconstructions/</code>
+						<br />
+						and update <code>/src/data/pdfs.ts</code>.
+					</p>
+				</div>
+			) : (
+				deconstructions.map((entry) => (
+					<a
+						href={`/view?file=${encodeURIComponent(entry.file)}&title=${encodeURIComponent(entry.title)}&back=${encodeURIComponent(pageUrl)}`}
+						class="archive-card"
+					>
+						<h2>{entry.title}</h2>
+						{entry.date && <time datetime={entry.date}>{entry.date}</time>}
+						{entry.description && <p>{entry.description}</p>}
+					</a>
+				))
+			)}
+		</div>
+	</div>
+</BaseLayout>

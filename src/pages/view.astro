@@ -1,0 +1,54 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import '../styles/archive.css';
+---
+
+<BaseLayout
+	title="Viewing Document"
+	description="PDF viewer"
+>
+	<div class="pdf-viewer-page">
+		<div class="pdf-toolbar">
+			<a href="/" class="back-link" id="back-link">← Back</a>
+			<h1 id="pdf-title">Loading...</h1>
+			<div class="pdf-actions">
+				<a
+					href="#"
+					target="_blank"
+					rel="noopener noreferrer"
+					class="pdf-action-link"
+					id="open-link"
+				>
+					Open
+				</a>
+			</div>
+		</div>
+		<div class="pdf-container">
+			<iframe id="pdf-frame" title="PDF Document" frameborder="0"></iframe>
+		</div>
+	</div>
+</BaseLayout>
+
+<script>
+	const params = new URLSearchParams(window.location.search);
+	const file = params.get('file');
+	const title = params.get('title') || 'Document';
+	const back = params.get('back') || '/';
+
+	const frame = document.getElementById('pdf-frame') as HTMLIFrameElement;
+	const titleEl = document.getElementById('pdf-title');
+	const backLink = document.getElementById('back-link') as HTMLAnchorElement;
+	const openLink = document.getElementById('open-link') as HTMLAnchorElement;
+
+	if (file) {
+		frame.src = file;
+		if (titleEl) titleEl.textContent = title;
+		if (backLink) backLink.href = back;
+		if (openLink) openLink.href = file;
+	} else {
+		if (titleEl) titleEl.textContent = 'No document specified';
+		if (frame)
+			frame.srcdoc =
+				'<p style="color:#8a8a8a;text-align:center;padding:2rem;">No PDF file specified in URL.</p>';
+	}
+</script>

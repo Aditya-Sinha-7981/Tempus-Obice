@@ -1,0 +1,27 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { resume } from '../data/pdfs';
+import '../styles/archive.css';
+
+const pdfUrl = resume.file;
+---
+
+<BaseLayout
+	title="Resume"
+	description="Personal resume"
+>
+	<div class="pdf-viewer-page">
+		<div class="pdf-toolbar">
+			<a href="/" class="back-link">← Home</a>
+			<h1>Résumé</h1>
+			<div class="pdf-actions">
+				<a href={pdfUrl} target="_blank" rel="noopener noreferrer" class="pdf-action-link">
+					Open
+				</a>
+			</div>
+		</div>
+		<div class="pdf-container">
+			<iframe src={pdfUrl} title="Resume" frameborder="0"></iframe>
+		</div>
+	</div>
+</BaseLayout>

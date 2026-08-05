@@ -1,0 +1,44 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { gdds } from '../data/pdfs';
+import '../styles/archive.css';
+
+const pageUrl = Astro.url.pathname;
+---
+
+<BaseLayout
+	title="Personal GDDs"
+	description="Game Design Documents"
+>
+	<div class="archive-page">
+		<div class="archive-header">
+			<a href="/" class="back-link">← Home</a>
+			<h1 class="archive-title">Personal GDDs</h1>
+			<p class="archive-description">Game Design Documents and design-focused writings.</p>
+		</div>
+
+		<div class="archive-list">
+			{gdds.length === 0 ? (
+				<div class="archive-empty">
+					<p>No GDDs uploaded yet.</p>
+					<p>
+						Add PDFs to <code>/public/pdfs/gdds/</code>
+						<br />
+						and update <code>/src/data/pdfs.ts</code>.
+					</p>
+				</div>
+			) : (
+				gdds.map((entry) => (
+					<a
+						href={`/view?file=${encodeURIComponent(entry.file)}&title=${encodeURIComponent(entry.title)}&back=${encodeURIComponent(pageUrl)}`}
+						class="archive-card"
+					>
+						<h2>{entry.title}</h2>
+						{entry.date && <time datetime={entry.date}>{entry.date}</time>}
+						{entry.description && <p>{entry.description}</p>}
+					</a>
+				))
+			)}
+		</div>
+	</div>
+</BaseLayout>
